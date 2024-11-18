@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 const AddTaskModal = ({ 
   onClose, 
   onSave, 
-  initialTask = null  // Ubah menjadi null secara default
+  initialTask = null 
 }) => {
-  // Definisikan state default task
+  // state default task
   const [task, setTask] = useState({
     title: '',
     description: '',
@@ -15,7 +15,7 @@ const AddTaskModal = ({
     status: 'To Do'
   });
 
-  // Gunakan useEffect untuk memperbarui state jika initialTask berubah
+  // untuk memperbarui state ketika initialTask berubah
   useEffect(() => {
     if (initialTask) {
       setTask(initialTask);
@@ -32,6 +32,7 @@ const AddTaskModal = ({
     }
   }, [initialTask]);
 
+    // Fungsi untuk menangani perubahan nilai input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTask(prev => ({
@@ -39,7 +40,7 @@ const AddTaskModal = ({
       [name]: value
     }));
   };
-
+  // Fungsi untuk menangani submit task
   const handleSubmit = () => {
     const completeTask = {
       ...task,

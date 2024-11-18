@@ -26,14 +26,13 @@ export const useTasks = () => {
     setLoading(true);
     try {
       const response = await axios.post(API_URL, {
-        // Pastikan ID adalah string
-        id: String(Date.now()), // Atau gunakan UUID
+        id: String(Date.now()), 
         ...taskData
       });
       
       setTasks(prevTasks => [...prevTasks, {
         ...response.data,
-        id: String(response.data.id) // Pastikan ID selalu string
+        id: String(response.data.id)
       }]);
       
       setLoading(false);
@@ -46,13 +45,11 @@ export const useTasks = () => {
   };
 
   // Update Task
-  // Update fungsi updateTask untuk mendukung perubahan status
 const updateTask = async (id, updatedTask) => {
   setLoading(true);
   try {
     const response = await axios.put(`${API_URL}/${id}`, updatedTask);
     
-    // Update tasks di state
     setTasks(prevTasks => 
       prevTasks.map(task => 
         task.id === id ? response.data : task
@@ -82,7 +79,6 @@ const updateTask = async (id, updatedTask) => {
     }
   };
 
-  // Tambahkan useEffect untuk fetch ulang saat komponen mount
   useEffect(() => {
     fetchTasks();
   }, []);
